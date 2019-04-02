@@ -47,15 +47,15 @@ body {
   border-radius: 10px; 
 }
 
-.messageLeftHandProfileContent{
+.messageLeftContainer{
   margin-right: 15px; 
 }
 
-.messageLeftHandProfileContentImage{
+.messageLeftAvatar{
   border-radius: 10px; 
 }
 
-.messageLeftHandProfileContentHandle{
+.messageLeftHandle{
   text-align: center; 
   margin: 5px auto;
 }
