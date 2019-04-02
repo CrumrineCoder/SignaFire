@@ -272,6 +272,7 @@ class MessagesContainer extends Component {
       starred: 0
     };
     this.handleStar = this.handleStar.bind(this);
+    this.updateStarCount = this.updateStarCount.bind(this);
   }
 
   /*
@@ -287,7 +288,7 @@ class MessagesContainer extends Component {
             "isTrashed": false
             */
 
-  componentWillMount() {
+  updateStarCount(){
     var sum = 0;
     for (var i = 0; i < this.state.messages.length; i++) {
       if (this.state.messages[i].meta.isStarred) {
@@ -299,13 +300,23 @@ class MessagesContainer extends Component {
     })
   }
 
+  componentWillMount() {
+    this.updateStarCount();
+  }
+
   handleStar(id) {
     let index = this.state.messages.findIndex(x => x.id ===id);
     let messagesUpdate =  this.state.messages;
+    let updateMessageStarTotal = 1;
+    if(messagesUpdate[index].meta.isStarred){
+      updateMessageStarTotal = -1;
+    }
     messagesUpdate[index].meta.isStarred = !messagesUpdate[index].meta.isStarred;
+    messagesUpdate[index].score += updateMessageStarTotal;
     this.setState({
       messages: messagesUpdate
-    })
+    });
+    this.updateStarCount();
   }
 
   render() {
