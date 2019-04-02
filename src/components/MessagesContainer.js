@@ -272,7 +272,7 @@ class MessagesContainer extends Component {
       starred: 0,
       trashedMessages: [],
       isTrashOnly: false,
-      highlightPureText: "nisi",
+      highlightPureText: "",
       highlightSubmitText: []
     };
     this.handleStar = this.handleStar.bind(this);
@@ -375,12 +375,9 @@ class MessagesContainer extends Component {
     return (
       <div className="messagesContainer">
         <h3>Starred: {this.state.starred}</h3>
-        <button onClick={this.toggleTrashOnly}>{this.state.isTrashOnly ? 'Show Untrashed Messages' : 'Show Trashed Messages'}</button>
-        <label>
-          Highlighted Words:
-             <input type="text" name="highlight" value={this.state.highlightPureText} onChange={this.handleHighlight} />
-        </label>
-        <input type="submit" onClick={this.handleHighlightSubmit} value="Submit" />
+        <button className="messageButton" onClick={this.toggleTrashOnly}>{this.state.isTrashOnly ? 'Show Untrashed Messages' : 'Show Trashed Messages'}</button>
+        <input type="text" className="highlightInput" value={this.state.highlightPureText} onChange={this.handleHighlight} placeholder="Highlight text" />
+        <button className="messageButton highlightSubmitButton" onClick={this.handleHighlightSubmit}>Submit</button>
         {messagesContent}
       </div>
     );
