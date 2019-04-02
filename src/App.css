@@ -59,3 +59,13 @@ body {
   text-align: center; 
   margin: 5px auto;
 }
+
+.messageMiddleHeaderContent{
+  color: #666667;
+  margin: 0px; 
+  font-size: 12px; 
+}
+
+.messageMiddleContent{
+  margin: 5px 0px;
+}

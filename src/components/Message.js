@@ -20,10 +20,12 @@ class Message extends Component {
                 </div>
                 <div className="messageMiddleContainer">
                     <div className="messageMiddleHeaderContainer">
-                        <p className="messageMiddleHeaderSource">{content.source}</p>
-                        <p className="messageMiddleHeaderDate">{date}</p>
+                        <p className="messageMiddleHeaderContent">{content.source} | {date}</p>
                     </div>
                     <p className="messageMiddleContent"> {content.content} </p>
+                </div>
+                <div className="messageRightContainer">
+                    <i class="far fa-star"></i>
                 </div>
             </div>
         );
