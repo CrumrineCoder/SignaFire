@@ -40,7 +40,7 @@ class Message extends Component {
             <div className="message">
                 <div className="messageLeftContainer">
                     <img src={content.avatar} className="messageLeftAvatar" />
-                    <p className="messageLeftHandle"> {content.handle} </p>
+                    <a className="messageLeftHandle" target="_blank" href={"https://twitter.com/"+content.handle}> {content.handle} </a>
                 </div>
                 <div className="messageMiddleContainer">
                     <div className="messageMiddleHeaderContainer">

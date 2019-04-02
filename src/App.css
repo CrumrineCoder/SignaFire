@@ -1,142 +1,156 @@
 .App {
-  margin: 30px 50px; 
+	margin: 30px 50px;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: #EFEFEF;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	margin: 0;
+	padding: 0;
+	background: #EFEFEF;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.header{
-  justify-content: space-between;
-  display: flex; 
-  align-items: center;
-  padding: 10px;
+.header {
+	justify-content: space-between;
+	display: flex;
+	align-items: center;
+	padding: 10px;
 }
 
-.headerLogo{
-  margin-right: auto;
+.headerLogo {
+	margin-right: auto;
 }
 
-.headerMessageViewer{
-  margin: 0px;
-  margin-left: auto;
-  color: #646464;
-  text-transform: uppercase;
+.headerMessageViewer {
+	margin: 0px;
+	margin-left: auto;
+	color: #646464;
+	text-transform: uppercase;
 }
 
-.messagesContainer{
- background: #FFFFFF; 
- border: 1px solid#C5C5C5; 
- padding: 0px 10px; 
- border-radius: 10px; 
+.messagesContainer {
+	background: #FFFFFF;
+	border: 1px solid#C5C5C5;
+	padding: 0px 10px;
+	border-radius: 10px;
 }
 
-.messages{
-  padding: 0px; 
+.messages {
+	padding: 0px;
 }
 
-.message{
-  padding: 15px; 
-  border: 1px solid #C5C5C5;
-  margin-bottom: 10px; 
-  display: flex;
-  border-radius: 10px; 
-}
-
-.messageLeftContainer{
-  margin-right: 15px; 
-}
-
-.messageLeftAvatar{
-  border-radius: 10px; 
-}
-
-.messageLeftHandle{
-  text-align: center; 
-  margin: 5px auto;
-}
-
-.messageMiddleHeaderContent{
-  color: #666667;
-  margin: 0px; 
-  font-size: 12px; 
-}
-
-.messageMiddleContent{
-  margin: 5px 5px 0px 0px;
-}
-
-.messageRightContainer{
-  margin-left: auto;
- 
-}
-
-.messageRightButtonsContainer{
-  align-items:flex-start;
-  align-content:flex-start;
-  display: flex; 
-}
-
-.messageButton{
-  padding: 10px;
-  border: 1px solid #C5C5C5;
-  background: white; 
-  flex-basis: 0;
-  white-space: nowrap;
-}
-
-.messageButton:hover{
-  cursor: pointer;
-  background: rgb(219, 219, 219);
-}
-
-.starButton{
-  margin-right: 5px;
-}
-
-.activeButton{
-  color: #ffffff;
-  background: #C09513;
-  border: 1px solid #C09513;
-}
-
-.activeButton:hover{
-  background: rgb(138, 107, 14);
-  border: 1px solid rgb(138, 107, 14);
-}
-
-.trashButton{
-  color: #ffffff;
-  background: #ff4007;
-  border: 1px solid #ff4007;
-}
-
-.trashButton:hover{
-  background: #c23307;
-  border: 1px solid #c23307;
-}
-
-.messageRightScore{
-  margin: 5px 0px;
+.message {
+	padding: 15px;
+	border: 1px solid #C5C5C5;
+	margin-bottom: 10px;
+	display: flex;
+	border-radius: 10px;
+  flex-wrap: wrap;
   justify-content: center;
-  display: flex; 
 }
 
-.star{
-  margin: 3px;
+.messageLeftContainer {
+	display: inline-block;
+	flex-grow: 1;
+	flex-basis: 10%;
 }
 
-.highlightInput{
-  margin-left: 10px;
-  border: 1px solid #C5C5C5;
+.messageLeftAvatar {
+	border-radius: 10px;
+	margin: 0 auto;
+	display: block;
 }
 
-.highlightInput, .highlightSubmitButton{
-  display: inline-block;
-  padding: 5px;
-  font-size: 14px;
-  -webkit-appearance: none;
+.messageLeftHandle {
+	text-align: center;
+	margin: 5px auto;
+	display: block;
+}
+
+.messageMiddleContainer {
+	display: inline-block;
+	flex-grow: 1;
+	flex-basis: 50%;
+  padding: 0px 5px 10px 5px;
+}
+
+.messageMiddleContent {
+	margin: 5px 5px 0px 0px;
+}
+
+.messageMiddleHeaderContent {
+	color: #666667;
+	margin: 0px;
+	font-size: 12px;
+}
+
+.messageRightContainer {
+
+}
+
+.messageRightButtonsContainer {
+	align-items: flex-start;
+	align-content: flex-start;
+	display: flex;
+}
+
+.messageButton {
+	padding: 10px;
+	border: 1px solid #C5C5C5;
+	background: white;
+	flex-basis: 0;
+	white-space: nowrap;
+}
+
+.messageButton:hover {
+	cursor: pointer;
+	background: rgb(219, 219, 219);
+}
+
+.starButton {
+	margin-right: 5px;
+}
+
+.activeButton {
+	color: #ffffff;
+	background: #C09513;
+	border: 1px solid #C09513;
+}
+
+.activeButton:hover {
+	background: rgb(138, 107, 14);
+	border: 1px solid rgb(138, 107, 14);
+}
+
+.trashButton {
+	color: #ffffff;
+	background: #ff4007;
+	border: 1px solid #ff4007;
+}
+
+.trashButton:hover {
+	background: #c23307;
+	border: 1px solid #c23307;
+}
+
+.messageRightScore {
+	margin: 5px 0px;
+	justify-content: center;
+	display: flex;
+}
+
+.star {
+	margin: 3px;
+}
+
+.highlightInput {
+	margin-left: 10px;
+	border: 1px solid #C5C5C5;
+}
+
+.highlightInput,
+.highlightSubmitButton {
+	display: inline-block;
+	padding: 5px;
+	font-size: 14px;
+	-webkit-appearance: none;
 }
