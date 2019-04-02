@@ -269,25 +269,15 @@ class MessagesContainer extends Component {
           }
         }
       ],
-      starred: 0
+      starred: 0,
+      trashedMessages: [],
+      isTrashOnly: false
     };
     this.handleStar = this.handleStar.bind(this);
-    this.handleTrash = this.handleTrash.bind(this);
     this.updateStarCount = this.updateStarCount.bind(this);
+    this.handleTrash = this.handleTrash.bind(this);
+    this.toggleTrashOnly = this.toggleTrashOnly.bind(this);
   }
-
-  /*
-     "id": 55747,
-          "handle": "Kaitlyn.Barton32",
-          "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marclgonzales/128.jpg",
-          "timestamp": "2019-01-02T05:07:54.048Z",
-          "source": "Twitter",
-          "content": "Delectus facilis nisi consequatur numquam consequatur temporibus minima. Quaerat et id et asperiores alias inventore repellat qui. Laudantium at ut temporibus. Architecto delectus modi consequatur. Velit labore fuga iusto.",
-          "score": 26,
-          "meta": {
-            "isStarred": false,
-            "isTrashed": false
-            */
 
   updateStarCount() {
     var sum = 0;
@@ -323,24 +313,49 @@ class MessagesContainer extends Component {
     let messagesUpdate = this.state.messages.filter(function (obj) {
       return obj.id !== id;
     });
+
+    let trashUpdate = this.state.messages.filter(function (obj) {
+      return obj.id == id;
+    });
+
+    trashUpdate = this.state.trashedMessages.concat(trashUpdate);
+
     this.setState({
-      messages: messagesUpdate
+      messages: messagesUpdate,
+      trashedMessages: trashUpdate
     }, this.updateStarCount);
+  }
+
+  toggleTrashOnly(){
+    this.setState({
+      isTrashOnly: !this.state.isTrashOnly
+    })
   }
 
   render() {
 
-    let { messages } = this.state;
+    let { messages, trashedMessages } = this.state;
 
-    let messagesContent = (
-      <ul className="messages">
-        {messages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
-      </ul>
-    )
+    let messagesContent = "";
+
+    if (this.state.isTrashOnly) {
+      messagesContent = (
+        <ul className="messages">
+          {trashedMessages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
+        </ul>
+      )
+    } else {
+      messagesContent = (
+        <ul className="messages">
+          {messages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
+        </ul>
+      )
+    }
 
     return (
       <div className="messagesContainer">
         <h3>Starred: {this.state.starred}</h3>
+        <button onClick={this.toggleTrashOnly}>{this.state.isTrashOnly ? 'Show Untrashed Messages' : 'Show Trashed Messages'}</button>
         {messagesContent}
       </div>
     );
