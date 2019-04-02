@@ -1,6 +1,5 @@
 .App {
-  width: 80%;
-  margin: 30px auto; 
+  margin: 30px 50px; 
 }
 
 body {
@@ -72,15 +71,39 @@ body {
 
 .messageRightContainer{
   margin-left: auto;
+ 
 }
 
-.activeStar{
-  color: #C09513;
+.messageRightButtonsContainer{
+  align-items:flex-start;
+  align-content:flex-start;
+  display: flex; 
 }
 
-.messageRightStar:hover{
-  opacity: .7;
+.messageButton{
+  padding: 10px;
+  border: 1px solid #C5C5C5;
+  background: white; 
+  flex-basis: 0
+}
+
+.messageButton:hover{
   cursor: pointer;
+  background: rgb(219, 219, 219);
+}
+
+.starButton{
+  margin-right: 5px; 
+}
+
+.activeButton{
+  color: white;
+  background: #C09513;
+  border: none;
+}
+
+.activeButton:hover{
+  background: rgb(138, 107, 14);
 }
 
 .messageRightScore{

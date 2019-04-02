@@ -13,6 +13,7 @@ class Message extends Component {
     }
 
     toggleIsStarred() {
+        console.log("test");
         this.props.onStarToggle(this.props.id);
     }
 
@@ -35,22 +36,6 @@ class Message extends Component {
 
         let messageContent = "";
 
-        if (this.props.highlight) {
-            messageContent = (
-                <Highlighter
-                    className="messageMiddleContent"
-                    highlightClassName="messageMiddleContentHighlight"
-                    searchWords={this.props.highlight}
-                    autoEscape={true}
-                    textToHighlight={content.content}
-                />
-            )
-        } else {
-            messageContent = (
-                <p className="messageMiddleContent"> {content.content} </p>
-            )
-        }
-
         return (
             <div className="message">
                 <div className="messageLeftContainer">
@@ -61,12 +46,22 @@ class Message extends Component {
                     <div className="messageMiddleHeaderContainer">
                         <p className="messageMiddleHeaderContent">{content.source} | {date}</p>
                     </div>
-                    {messageContent}
+                    <Highlighter
+                        className="messageMiddleContent"
+                        highlightClassName="messageMiddleContentHighlight"
+                        searchWords={this.props.highlight}
+                        autoEscape={true}
+                        textToHighlight={content.content}
+                    />
                 </div>
                 <div className="messageRightContainer">
-                    <i onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>
-                    <p className="messageRightScore">{content.score}</p>
-                    <i onClick={this.toggleIsTrashed} class="far fa-trash-alt messageRightTrash"></i>
+                    <div className="messageRightButtonsContainer">
+                        <button onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'messageButton starButton activeButton' : 'messageButton starButton'}>{content.meta.isStarred ? "Starred!" : "Star Message!"}</button>
+                        <button onClick={this.toggleIsTrashed} class="messageButton trashButton">Trash</button>
+                    </div>
+                    <div className="messageRightScoreContainer">
+                        <p className="messageRightScore">{content.score}</p>
+                    </div>
                 </div>
             </div>
         );

@@ -361,7 +361,7 @@ class MessagesContainer extends Component {
     if (this.state.isTrashOnly) {
       messagesContent = (
         <ul className="messages">
-          {trashedMessages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
+          {trashedMessages.map((message, i) => <Message highlight={[]} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
         </ul>
       )
     } else {
