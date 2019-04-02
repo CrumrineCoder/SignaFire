@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Signa Fire Take Home Project
 
-## Available Scripts
+Message Viewer built from a wireframe with the addition of a trash button, a view toggle button, and a text highlighter.
 
-In the project directory, you can run:
+## Deployment
 
-### `npm start`
+Download the project to your computer, and open it in the code editor of your choice. Open the terminal in the root directly and run...
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install
+npm start
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Then open http://localhost:3000/ to see the app!
 
-### `npm test`
+### My Assumptions
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* All messages come from Twitter and thus will not extend the word limit. All users will have an avatar and handle which I can link to. 
+* All data is stored locally so Redux, async design, and database management don't need to be considered nor do we need to consider persistence of data (as mentioned in the task).
+* We can use FontAwesome for icons
+* The purpose of this application is to view messages-of-the-day from friends or possible friends on Twitter, and we would use some algorithm to make sure the user would have more messages like the ones they star and less like the ones they trash, assumingly by text content because the user can highlight it. 
+* The user won't want to untrash content.
+* There's some sort of daily reward or something for starring a number of posts; assumingly it would be an infinite scroll and the goal would to get users to find 10 new people they liked reading the Twitter post of. However, because I don't have infinite data and it's outside the scope of this project, I did not implement that
+* The user may be using this on their phone, so the application is responsive. 
 
-### `npm run build`
+### Acknowledgments
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+(https://github.com/bvaughn/react-highlight-words)[React Text Highlighter] For a text highlighter library with React.
