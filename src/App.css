@@ -86,3 +86,8 @@ body {
 .messageRightScore{
   margin: 5px 0px;
 }
+
+.messageRightTrash{
+  text-align: center;
+  width: 100%;
+}

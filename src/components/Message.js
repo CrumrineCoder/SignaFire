@@ -6,28 +6,22 @@ class Message extends Component {
         super(props);
         // Used for when searching and tagging functionality whenever that comes
         this.state = {
-            isStarred: false,
-            isTrashed: false 
         }
         this.toggleIsStarred = this.toggleIsStarred.bind(this);
-    }
-
-    componentWillMount(){
-        this.setState({
-            isStarred: this.props.meta.isStarred,
-            isTrashed: this.props.meta.isTrashed
-        })
+        this.toggleIsTrashed = this.toggleIsTrashed.bind(this);
     }
 
     toggleIsStarred(){
-       /* this.setState({
-            isStarred: !this.state.isStarred
-        }) */
-        this.props.onChange(this.props.id);
+        this.props.onStarToggle(this.props.id);
     }
 
+    toggleIsTrashed(){
+        this.props.onTrashToggle(this.props.id);
+    }
+
+
     render() {
-      //  console.log(this.props);
+
         let content = this.props;
         var dateObj = new Date(content.timestamp);
         var month = dateObj.getUTCMonth(); //months from 1-12
@@ -52,6 +46,7 @@ class Message extends Component {
                 <div className="messageRightContainer">
                     <i onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>
                     <p className="messageRightScore">{content.score}</p>
+                    <i onClick={this.toggleIsTrashed} class="far fa-trash-alt messageRightTrash"></i>
                 </div>
             </div>
         );

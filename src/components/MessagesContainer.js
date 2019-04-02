@@ -272,6 +272,7 @@ class MessagesContainer extends Component {
       starred: 0
     };
     this.handleStar = this.handleStar.bind(this);
+    this.handleTrash = this.handleTrash.bind(this);
     this.updateStarCount = this.updateStarCount.bind(this);
   }
 
@@ -288,7 +289,7 @@ class MessagesContainer extends Component {
             "isTrashed": false
             */
 
-  updateStarCount(){
+  updateStarCount() {
     var sum = 0;
     for (var i = 0; i < this.state.messages.length; i++) {
       if (this.state.messages[i].meta.isStarred) {
@@ -305,27 +306,35 @@ class MessagesContainer extends Component {
   }
 
   handleStar(id) {
-    let index = this.state.messages.findIndex(x => x.id ===id);
-    let messagesUpdate =  this.state.messages;
+    let index = this.state.messages.findIndex(x => x.id === id);
+    let messagesUpdate = this.state.messages;
     let updateMessageStarTotal = 1;
-    if(messagesUpdate[index].meta.isStarred){
+    if (messagesUpdate[index].meta.isStarred) {
       updateMessageStarTotal = -1;
     }
     messagesUpdate[index].meta.isStarred = !messagesUpdate[index].meta.isStarred;
     messagesUpdate[index].score += updateMessageStarTotal;
     this.setState({
       messages: messagesUpdate
+    }, this.updateStarCount);
+  }
+
+  handleTrash(id) {
+    let messagesUpdate = this.state.messages.filter(function (obj) {
+      return obj.id !== id;
     });
-    this.updateStarCount();
+    this.setState({
+      messages: messagesUpdate
+    }, this.updateStarCount);
   }
 
   render() {
 
     let { messages } = this.state;
-    console.log(messages);
+
     let messagesContent = (
       <ul className="messages">
-        {messages.map((message, i) => <Message onChange={this.handleStar} key={i} id={message.id} {...message} />)}
+        {messages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
       </ul>
     )
 
