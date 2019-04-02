@@ -15,7 +15,6 @@ class MessagesContainer extends Component {
     return (
       <div className="messagesContainer">
         <h3>Starred: {this.props.starred}</h3>
-        <Message></Message>
         {messagesContent}
       </div>
     );
