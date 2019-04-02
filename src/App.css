@@ -94,7 +94,7 @@ body {
 }
 
 .starButton{
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 
 .activeButton{
@@ -108,10 +108,6 @@ body {
   border: 1px solid rgb(138, 107, 14);
 }
 
-.messageRightScore{
-  margin: 5px 0px;
-}
-
 .trashButton{
   color: #ffffff;
   background: #ff4007;
@@ -123,11 +119,20 @@ body {
   border: 1px solid #c23307;
 }
 
+.messageRightScore{
+  margin: 5px 0px;
+  justify-content: center;
+  display: flex; 
+}
+
+.star{
+  margin: 3px;
+}
+
 .highlightInput{
   margin-left: 10px;
   border: 1px solid #C5C5C5;
 }
-
 
 .highlightInput, .highlightSubmitButton{
   display: inline-block;

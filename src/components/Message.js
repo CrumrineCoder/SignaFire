@@ -60,7 +60,7 @@ class Message extends Component {
                         <button onClick={this.toggleIsTrashed} class="messageButton trashButton">Trash</button>
                     </div>
                     <div className="messageRightScoreContainer">
-                        <p className="messageRightScore">{content.score}</p>
+                        <p className="messageRightScore">{content.score} <i class="fas fa-star star"></i></p>
                     </div>
                 </div>
             </div>
