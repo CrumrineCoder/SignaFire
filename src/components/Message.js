@@ -20,13 +20,14 @@ class Message extends Component {
     }
 
     toggleIsStarred(){
-        this.setState({
+       /* this.setState({
             isStarred: !this.state.isStarred
-        })
+        }) */
+        this.props.onChange(this.props.id);
     }
 
     render() {
-        console.log(this.props);
+      //  console.log(this.props);
         let content = this.props;
         var dateObj = new Date(content.timestamp);
         var month = dateObj.getUTCMonth(); //months from 1-12
@@ -49,7 +50,7 @@ class Message extends Component {
                     <p className="messageMiddleContent"> {content.content} </p>
                 </div>
                 <div className="messageRightContainer">
-                    <i onClick={this.toggleIsStarred} className={this.state.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>
+                    <i onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>
                     <p className="messageRightScore">{content.score}</p>
                 </div>
             </div>
