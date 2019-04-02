@@ -272,16 +272,28 @@ class App extends Component {
             "isTrashed": false
           }
         }
-      ]
+      ],
+      starred: 0
     };
   }
 
+  componentWillMount() {
+    var sum = 0;
+    for (var i = 0; i < this.state.messages.length; i++) {
+      if (this.state.messages[i].meta.isStarred) {
+        sum+=1;
+      }
+    }
+    this.setState({
+      starred: sum
+    })
+  }
 
   render() {
     return (
       <div className="App">
         <Header></Header>
-        <MessagesContainer messages={this.state.messages} starred={12}></MessagesContainer>
+        <MessagesContainer starred={this.state.starred} messages={this.state.messages}></MessagesContainer>
       </div>
     );
   }

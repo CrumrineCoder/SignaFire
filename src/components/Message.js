@@ -9,12 +9,19 @@ class Message extends Component {
             isStarred: false,
             isTrashed: false 
         }
+        this.toggleIsStarred = this.toggleIsStarred.bind(this);
     }
 
     componentWillMount(){
         this.setState({
             isStarred: this.props.meta.isStarred,
             isTrashed: this.props.meta.isTrashed
+        })
+    }
+
+    toggleIsStarred(){
+        this.setState({
+            isStarred: !this.state.isStarred
         })
     }
 
@@ -42,8 +49,8 @@ class Message extends Component {
                     <p className="messageMiddleContent"> {content.content} </p>
                 </div>
                 <div className="messageRightContainer">
-                    <i className={this.state.isStarred ? 'fas fa-star activeStar' : 'far fa-star'}></i>
-                    <p className="messageRightContainerScore">{content.score}</p>
+                    <i onClick={this.toggleIsStarred} className={this.state.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>
+                    <p className="messageRightScore">{content.score}</p>
                 </div>
             </div>
         );
