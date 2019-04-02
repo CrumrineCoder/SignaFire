@@ -69,3 +69,7 @@ body {
 .messageMiddleContent{
   margin: 5px 0px;
 }
+
+.activeStar{
+  color: #C09513;
+}

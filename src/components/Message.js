@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 
 class Message extends Component {
+
+    constructor(props) {
+        super(props);
+        // Used for when searching and tagging functionality whenever that comes
+        this.state = {
+            isStarred: false,
+            isTrashed: false 
+        }
+    }
+
+    componentWillMount(){
+        this.setState({
+            isStarred: this.props.meta.isStarred,
+            isTrashed: this.props.meta.isTrashed
+        })
+    }
+
     render() {
-        console.log(this.props);
+        console.log(this.state);
         let content = this.props;
         var dateObj = new Date(content.timestamp);
         var month = dateObj.getUTCMonth(); //months from 1-12
@@ -25,7 +42,9 @@ class Message extends Component {
                     <p className="messageMiddleContent"> {content.content} </p>
                 </div>
                 <div className="messageRightContainer">
-                    <i class="far fa-star"></i>
+                    <i className={this.state.isStarred ? 'fas fa-star activeStar' : 'far fa-star'}></i>
+                    {this.state.isStarred}
+                    {this.state.isTrashed}
                 </div>
             </div>
         );
