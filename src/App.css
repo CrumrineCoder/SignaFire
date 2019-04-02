@@ -70,6 +70,14 @@ body {
   margin: 5px 0px;
 }
 
+.messageRightContainer{
+  margin-left: auto;
+}
+
 .activeStar{
   color: #C09513;
+}
+
+.messageRightContainerScore{
+  margin: 5px 0px;
 }

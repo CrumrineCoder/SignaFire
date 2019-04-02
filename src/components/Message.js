@@ -19,7 +19,7 @@ class Message extends Component {
     }
 
     render() {
-        console.log(this.state);
+        console.log(this.props);
         let content = this.props;
         var dateObj = new Date(content.timestamp);
         var month = dateObj.getUTCMonth(); //months from 1-12
@@ -43,8 +43,7 @@ class Message extends Component {
                 </div>
                 <div className="messageRightContainer">
                     <i className={this.state.isStarred ? 'fas fa-star activeStar' : 'far fa-star'}></i>
-                    {this.state.isStarred}
-                    {this.state.isTrashed}
+                    <p className="messageRightContainerScore">{content.score}</p>
                 </div>
             </div>
         );
