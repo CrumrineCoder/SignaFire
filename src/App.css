@@ -84,7 +84,8 @@ body {
   padding: 10px;
   border: 1px solid #C5C5C5;
   background: white; 
-  flex-basis: 0
+  flex-basis: 0;
+  white-space: nowrap;
 }
 
 .messageButton:hover{
@@ -97,20 +98,27 @@ body {
 }
 
 .activeButton{
-  color: white;
+  color: #ffffff;
   background: #C09513;
-  border: none;
+  border: 1px solid #C09513;
 }
 
 .activeButton:hover{
   background: rgb(138, 107, 14);
+  border: 1px solid rgb(138, 107, 14);
 }
 
 .messageRightScore{
   margin: 5px 0px;
 }
 
-.messageRightTrash{
-  text-align: center;
-  width: 100%;
+.trashButton{
+  color: #ffffff;
+  background: #ff4007;
+  border: 1px solid #ff4007;
+}
+
+.trashButton:hover{
+  background: #c23307;
+  border: 1px solid #c23307;
 }
