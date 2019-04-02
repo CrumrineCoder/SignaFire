@@ -272,12 +272,17 @@ class MessagesContainer extends Component {
       starred: 0,
       trashedMessages: [],
       isTrashOnly: false,
-      highlightedWords: ["nisi"]
+      highlightPureText: "nisi",
+      highlightSubmitText: []
     };
     this.handleStar = this.handleStar.bind(this);
     this.updateStarCount = this.updateStarCount.bind(this);
+
     this.handleTrash = this.handleTrash.bind(this);
     this.toggleTrashOnly = this.toggleTrashOnly.bind(this);
+
+    this.handleHighlight = this.handleHighlight.bind(this);
+    this.handleHighlightSubmit = this.handleHighlightSubmit.bind(this);
   }
 
   updateStarCount() {
@@ -333,6 +338,20 @@ class MessagesContainer extends Component {
     })
   }
 
+  handleHighlight(e) {
+    this.setState({
+      highlightPureText: e.target.value
+    })
+  }
+
+  handleHighlightSubmit() {
+    console.log("Deja Vu");
+    console.log(this.state.highlightPureText)
+    this.setState({
+      highlightSubmitText: this.state.highlightPureText.split(" ")
+    })
+  }
+
   render() {
 
     let { messages, trashedMessages } = this.state;
@@ -348,7 +367,7 @@ class MessagesContainer extends Component {
     } else {
       messagesContent = (
         <ul className="messages">
-          {messages.map((message, i) => <Message highlight={this.state.highlightedWords} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
+          {messages.map((message, i) => <Message highlight={this.state.highlightSubmitText} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
         </ul>
       )
     }
@@ -357,6 +376,11 @@ class MessagesContainer extends Component {
       <div className="messagesContainer">
         <h3>Starred: {this.state.starred}</h3>
         <button onClick={this.toggleTrashOnly}>{this.state.isTrashOnly ? 'Show Untrashed Messages' : 'Show Trashed Messages'}</button>
+        <label>
+          Highlighted Words:
+             <input type="text" name="highlight" value={this.state.highlightPureText} onChange={this.handleHighlight} />
+        </label>
+        <input type="submit" onClick={this.handleHighlightSubmit} value="Submit" />
         {messagesContent}
       </div>
     );
