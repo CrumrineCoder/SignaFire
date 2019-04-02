@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Highlighter from "react-highlight-words";
 
 class Message extends Component {
 
@@ -11,11 +12,11 @@ class Message extends Component {
         this.toggleIsTrashed = this.toggleIsTrashed.bind(this);
     }
 
-    toggleIsStarred(){
+    toggleIsStarred() {
         this.props.onStarToggle(this.props.id);
     }
 
-    toggleIsTrashed(){
+    toggleIsTrashed() {
         this.props.onTrashToggle(this.props.id);
     }
 
@@ -30,7 +31,26 @@ class Message extends Component {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
         ];
-        let date = monthNames[month] + " " + day + ", " + year
+        let date = monthNames[month] + " " + day + ", " + year;
+
+        let messageContent = "";
+
+        if (this.props.highlight) {
+            messageContent = (
+                <Highlighter
+                    className="messageMiddleContent"
+                    highlightClassName="messageMiddleContentHighlight"
+                    searchWords={this.props.highlight}
+                    autoEscape={true}
+                    textToHighlight={content.content}
+                />
+            )
+        } else {
+            messageContent = (
+                <p className="messageMiddleContent"> {content.content} </p>
+            )
+        }
+
         return (
             <div className="message">
                 <div className="messageLeftContainer">
@@ -41,7 +61,7 @@ class Message extends Component {
                     <div className="messageMiddleHeaderContainer">
                         <p className="messageMiddleHeaderContent">{content.source} | {date}</p>
                     </div>
-                    <p className="messageMiddleContent"> {content.content} </p>
+                    {messageContent}
                 </div>
                 <div className="messageRightContainer">
                     <i onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'fas fa-star activeStar messageRightStar' : 'far fa-star messageRightStar'}></i>

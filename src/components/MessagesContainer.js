@@ -271,7 +271,8 @@ class MessagesContainer extends Component {
       ],
       starred: 0,
       trashedMessages: [],
-      isTrashOnly: false
+      isTrashOnly: false,
+      highlightedWords: ["nisi"]
     };
     this.handleStar = this.handleStar.bind(this);
     this.updateStarCount = this.updateStarCount.bind(this);
@@ -326,7 +327,7 @@ class MessagesContainer extends Component {
     }, this.updateStarCount);
   }
 
-  toggleTrashOnly(){
+  toggleTrashOnly() {
     this.setState({
       isTrashOnly: !this.state.isTrashOnly
     })
@@ -347,7 +348,7 @@ class MessagesContainer extends Component {
     } else {
       messagesContent = (
         <ul className="messages">
-          {messages.map((message, i) => <Message onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
+          {messages.map((message, i) => <Message highlight={this.state.highlightedWords} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
         </ul>
       )
     }
