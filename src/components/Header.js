@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <img className="headerLogo" src={logo} />
+        <img className="headerLogo" src={logo} alt="Signafire Logo" />
         <p className="headerMessageViewer">Message Viewer</p>
       </div>
     );

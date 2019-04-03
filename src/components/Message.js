@@ -13,7 +13,6 @@ class Message extends Component {
     }
 
     toggleIsStarred() {
-        console.log("test");
         this.props.onStarToggle(this.props.id);
     }
 
@@ -34,13 +33,11 @@ class Message extends Component {
         ];
         let date = monthNames[month] + " " + day + ", " + year;
 
-        let messageContent = "";
-
         return (
             <div className="message">
                 <div className="messageLeftContainer">
-                    <img src={content.avatar} className="messageLeftAvatar" />
-                    <a className="messageLeftHandle" target="_blank" href={"https://twitter.com/"+content.handle}> {content.handle} </a>
+                    <img src={content.avatar} className="messageLeftAvatar" alt={"User profile avatar"} />
+                    <a className="messageLeftHandle" rel="noopener noreferrer" target="_blank" href={"https://twitter.com/"+content.handle}> {content.handle} </a>
                 </div>
                 <div className="messageMiddleContainer">
                     <div className="messageMiddleHeaderContainer">
@@ -55,12 +52,12 @@ class Message extends Component {
                     />
                 </div>
                 <div className="messageRightContainer">
-                    <div className="messageRightButtonsContainer">
+                    <div className="messageRightButtonsContainer" style={{display: content.meta.isTrashed ? 'none' : 'inline-block' }}>
                         <button onClick={this.toggleIsStarred} className={content.meta.isStarred ? 'messageButton starButton activeButton' : 'messageButton starButton'}>{content.meta.isStarred ? "Starred!" : "Star Message!"}</button>
-                        <button onClick={this.toggleIsTrashed} class="messageButton trashButton">Trash</button>
+                        <button onClick={this.toggleIsTrashed} className="messageButton trashButton">Trash</button>
                     </div>
                     <div className="messageRightScoreContainer">
-                        <p className="messageRightScore">{content.score} <i class="fas fa-star star"></i></p>
+                        <p className="messageRightScore">{content.score} <i className="fas fa-star star"></i></p>
                     </div>
                 </div>
             </div>

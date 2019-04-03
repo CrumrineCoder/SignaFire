@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Message from "./Message.js";
+import MessageHeader from "./MessageHeader.js";
 
 class MessagesContainer extends Component {
 
@@ -316,12 +317,11 @@ class MessagesContainer extends Component {
   }
 
   handleTrash(id) {
+    let index = this.state.messages.findIndex(x => x.id === id);
+    let trashUpdate = this.state.messages[index];
+    trashUpdate.meta.isTrashed = true;
     let messagesUpdate = this.state.messages.filter(function (obj) {
       return obj.id !== id;
-    });
-
-    let trashUpdate = this.state.messages.filter(function (obj) {
-      return obj.id == id;
     });
 
     trashUpdate = this.state.trashedMessages.concat(trashUpdate);
@@ -345,8 +345,6 @@ class MessagesContainer extends Component {
   }
 
   handleHighlightSubmit() {
-    console.log("Deja Vu");
-    console.log(this.state.highlightPureText)
     this.setState({
       highlightSubmitText: this.state.highlightPureText.split(" ")
     })
@@ -374,10 +372,15 @@ class MessagesContainer extends Component {
 
     return (
       <div className="messagesContainer">
-        <h3>Starred: {this.state.starred}</h3>
-        <button className="messageButton" onClick={this.toggleTrashOnly}>{this.state.isTrashOnly ? 'Show Untrashed Messages' : 'Show Trashed Messages'}</button>
-        <input type="text" className="highlightInput" value={this.state.highlightPureText} onChange={this.handleHighlight} placeholder="Highlight text" />
-        <button className="messageButton highlightSubmitButton" onClick={this.handleHighlightSubmit}>Submit</button>
+        <MessageHeader 
+          isTrashOnly={this.state.isTrashOnly} 
+          starred={this.state.starred} 
+          highlightPureText={this.state.highlightPureText}
+          toggleTrashOnly={this.toggleTrashOnly}
+          handleHighlight={this.handleHighlight}
+          handleHighlightSubmit={this.handleHighlightSubmit}
+        >
+        </MessageHeader>
         {messagesContent}
       </div>
     );

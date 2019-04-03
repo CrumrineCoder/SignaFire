@@ -22,6 +22,7 @@ Then open http://localhost:3000/ to see the app!
 * The user won't want to untrash content.
 * There's some sort of daily reward or something for starring a number of posts; assumingly it would be an infinite scroll and the goal would to get users to find 10 new people they liked reading the Twitter post of. However, because I don't have infinite data and it's outside the scope of this project, I did not implement that
 * The user may be using this on their phone, so the application is responsive. 
+* The user won't be needing to trash or star trashed messages, so the buttons are not shown.
 
 ### Acknowledgments
 

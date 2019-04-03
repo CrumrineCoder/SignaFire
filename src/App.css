@@ -154,3 +154,35 @@ body {
 	font-size: 14px;
 	-webkit-appearance: none;
 }
+
+@media screen and (max-width: 400px) {
+	.App{
+		margin: 30px 15px;
+	}
+
+	.header{
+		display: block;
+		text-align: center;
+	}
+
+	.messageHeader{
+		text-align: center;
+	}
+
+	.messageButton{
+		width: 100%;
+		margin: 10px auto;
+	}
+
+	.highlightInput{
+		width: 100%;
+		margin: 0 auto;
+		padding: 5px 0px;
+		font-size: 16px;
+	}
+
+	.message{
+		display: block;
+		text-align: center;
+	}
+}
