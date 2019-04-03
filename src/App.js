@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Header from "./components/Header.js";
-import MessagesContainer from "./components/MessagesContainer.js";
+import Header from "./Home/components/Header.js";
+import MessagesContainer from "./Home/Messages/containers/MessagesContainer.js";
 
 
 class App extends Component {

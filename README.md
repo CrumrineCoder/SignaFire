@@ -23,6 +23,10 @@ Then open http://localhost:3000/ to see the app!
 * There's some sort of daily reward or something for starring a number of posts; assumingly it would be an infinite scroll and the goal would to get users to find 10 new people they liked reading the Twitter post of. However, because I don't have infinite data and it's outside the scope of this project, I did not implement that
 * The user may be using this on their phone, so the application is responsive. 
 * The user won't be needing to trash or star trashed messages, so the buttons are not shown.
+* We won't be updating the app in real time with sockets, so no precautions have to be taken. 
+* The user won't want to highlight untrashed text (I may've misinterpreted the instructions, but it seemed like you guys wanted it so they could only highlight nontrashed comments)
+* The app may want to expand to have routing, so I've put the Message viewer into the Home folder, which we can put an index.js file in for later. But as it's outside the scope of the project, I've just laid the foundation for the possibility of growth.
+* All messages upon the initial load are not trashed already, and there are no multiple sessions. 
 
 ### Acknowledgments
 

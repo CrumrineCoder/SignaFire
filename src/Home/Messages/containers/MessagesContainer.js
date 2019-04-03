@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import Message from "./Message.js";
-import MessageHeader from "./MessageHeader.js";
+import Message from "../components/Message.js";
+import MessageHeader from "../components/MessageHeader.js";
 
 class MessagesContainer extends Component {
 
   constructor(props) {
     super(props);
-    // Used for when searching and tagging functionality whenever that comes
+    // Would have logic for storing the messages when it was received by an API were this a real application.
     this.state = {
+      // Untrashed messages we show to the user on the message viewer
       messages: [
         {
           "id": 55747,
@@ -270,12 +271,19 @@ class MessagesContainer extends Component {
           }
         }
       ],
+      // Amount of comments starred by the user
       starred: 0,
+      // Store the comments the user has trashed here
       trashedMessages: [],
+      // True: We are viewing only trashed comments, False: We are viewing only untrashed comments
       isTrashOnly: false,
+      // The text stored for the user to see in the highlight input (so it doesn't automatically update in the view)
       highlightPureText: "",
+      // When the user clicks the submit button, we translate the highlightPureText into arrays to be used by the Highlighter class imported from react-highlight-words.
       highlightSubmitText: []
     };
+
+    // Bind actions to state
     this.handleStar = this.handleStar.bind(this);
     this.updateStarCount = this.updateStarCount.bind(this);
 
@@ -286,64 +294,84 @@ class MessagesContainer extends Component {
     this.handleHighlightSubmit = this.handleHighlightSubmit.bind(this);
   }
 
+  // Recalculate how many messages are starred by the user (not including trashed)
   updateStarCount() {
+    // Count how comments many are starred
     var sum = 0;
     for (var i = 0; i < this.state.messages.length; i++) {
       if (this.state.messages[i].meta.isStarred) {
         sum += 1;
       }
     }
+    // Update the star count in the state
     this.setState({
       starred: sum
     })
   }
 
+  // Upon opening the app, calculate how many messages are starred
   componentWillMount() {
     this.updateStarCount();
   }
 
+  // User clicks on Star Message!/Starred!
   handleStar(id) {
+    // Get the index of the message clicked on
     let index = this.state.messages.findIndex(x => x.id === id);
+    // Backup of the messages
     let messagesUpdate = this.state.messages;
+    // Change the total score of the message accordingly (if it's already starred by the user, decrease the score, if not increase)
     let updateMessageStarTotal = 1;
     if (messagesUpdate[index].meta.isStarred) {
       updateMessageStarTotal = -1;
     }
-    messagesUpdate[index].meta.isStarred = !messagesUpdate[index].meta.isStarred;
+    // Increase/decrease the score.
     messagesUpdate[index].score += updateMessageStarTotal;
+    // Reverse whether the message is starred or not
+    messagesUpdate[index].meta.isStarred = !messagesUpdate[index].meta.isStarred;
+    // Update the messages in the state, and then recalculate how many messages are starred by the user
     this.setState({
       messages: messagesUpdate
     }, this.updateStarCount);
   }
 
+  // User clicks on Trash
   handleTrash(id) {
+    // Get the index of the message clicked on
     let index = this.state.messages.findIndex(x => x.id === id);
+    // Get the message clicked on
     let trashUpdate = this.state.messages[index];
+    // Change the meta data so that the message is trashed
     trashUpdate.meta.isTrashed = true;
+    // Get all messages that isn't this one
     let messagesUpdate = this.state.messages.filter(function (obj) {
       return obj.id !== id;
     });
-
+    // Add the trashed message to the others
     trashUpdate = this.state.trashedMessages.concat(trashUpdate);
 
+    // Update the messages and trashed messages in the state, and then recalculate how many messages are starred by the user
     this.setState({
       messages: messagesUpdate,
       trashedMessages: trashUpdate
     }, this.updateStarCount);
   }
 
+  // Toggle whether or not we're only viewing trashed comments
   toggleTrashOnly() {
     this.setState({
       isTrashOnly: !this.state.isTrashOnly
     })
   }
 
+  // Based on the text input, change the pure text
   handleHighlight(e) {
     this.setState({
       highlightPureText: e.target.value
     })
   }
 
+  // Take the pure highlight text input and turn it into an array split by spaces, to be used for the highlighter
   handleHighlightSubmit() {
     this.setState({
       highlightSubmitText: this.state.highlightPureText.split(" ")
@@ -354,15 +382,19 @@ class MessagesContainer extends Component {
 
     let { messages, trashedMessages } = this.state;
 
+    
     let messagesContent = "";
 
+    // If we're only viewing trashed messages, make the messages components with the trashed messages, and don't highlight the text.
     if (this.state.isTrashOnly) {
       messagesContent = (
         <ul className="messages">
           {trashedMessages.map((message, i) => <Message highlight={[]} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
         </ul>
       )
-    } else {
+    }
+    // If we are viewing untrashed messages, use the messages from messages, and highlight the text.
+    else {
       messagesContent = (
         <ul className="messages">
           {messages.map((message, i) => <Message highlight={this.state.highlightSubmitText} onStarToggle={this.handleStar} onTrashToggle={this.handleTrash} key={i} id={message.id} {...message} />)}
@@ -372,9 +404,9 @@ class MessagesContainer extends Component {
 
     return (
       <div className="messagesContainer">
-        <MessageHeader 
-          isTrashOnly={this.state.isTrashOnly} 
-          starred={this.state.starred} 
+        <MessageHeader
+          isTrashOnly={this.state.isTrashOnly}
+          starred={this.state.starred}
           highlightPureText={this.state.highlightPureText}
           toggleTrashOnly={this.toggleTrashOnly}
           handleHighlight={this.handleHighlight}

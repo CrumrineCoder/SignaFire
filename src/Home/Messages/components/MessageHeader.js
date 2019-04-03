@@ -4,11 +4,14 @@ import React, { Component } from 'react';
 class MessageHeader extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
+
+        // Bind actions to state
         this.handleHighlight = this.handleHighlight.bind(this);
         this.handleHighlightSubmit = this.handleHighlightSubmit.bind(this);
         this.toggleTrashOnly = this.toggleTrashOnly.bind(this);
     }
+
+     // When the user users the toggle Trashed comments only button, type in the highlight text input, or submits the highlighted text with the button, forward the logic to the parent (Message Container)
 
     handleHighlight(e){
         this.props.handleHighlight(e);

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+// For highlighting words with the highlighter input and submit buttons
 import Highlighter from "react-highlight-words";
 
 class Message extends Component {
 
     constructor(props) {
         super(props);
-        // Used for when searching and tagging functionality whenever that comes
-        this.state = {
-        }
+    
+        // Bind actions to state
         this.toggleIsStarred = this.toggleIsStarred.bind(this);
         this.toggleIsTrashed = this.toggleIsTrashed.bind(this);
     }
+
+    // When the user presses on the trash or star buttons, forward the logic to the parent (Message Container)
 
     toggleIsStarred() {
         this.props.onStarToggle(this.props.id);
@@ -22,8 +24,9 @@ class Message extends Component {
 
 
     render() {
-
         let content = this.props;
+
+        // Format the date given from UTC timestamp
         var dateObj = new Date(content.timestamp);
         var month = dateObj.getUTCMonth(); //months from 1-12
         var day = dateObj.getUTCDate();
