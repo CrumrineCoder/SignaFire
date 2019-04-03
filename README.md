@@ -30,4 +30,4 @@ Then open http://localhost:3000/ to see the app!
 
 ### Acknowledgments
 
-(https://github.com/bvaughn/react-highlight-words)[React Text Highlighter] For a text highlighter library with React.
+* [React Text Highlighter](https://github.com/bvaughn/react-highlight-words) -For a text highlighter library with React.
